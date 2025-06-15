@@ -8,31 +8,9 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Bar-Haim/Rick-and-Morty-Project.git'
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh 'docker build -t $FULL_IMAGE .'
-                }
-            }
-        }
-
-        stage('Push Docker Image') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    script {
-                        sh """
-                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker push $FULL_IMAGE
-                        """
-                    }
-                }
             }
         }
 
@@ -60,7 +38,7 @@ pipeline {
             echo '💥 משהו נשבר – בואי נבדוק את הלוגים!'
         }
         success {
-            echo '✨ הפרויקט רץ בעננים – כל הכבוד מלכה!'
+            echo '🎉 הדפלוי עלה מהמם!'
         }
     }
 }
