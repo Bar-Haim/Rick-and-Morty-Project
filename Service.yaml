@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rick-service
+spec:
+  selector:
+    app: rick-and-morty  # ❗ זה חייב להתאים ל-label מה-Deployment
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

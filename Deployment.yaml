@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rickapi-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rick-and-morty
+  template:
+    metadata:
+      labels:
+        app: rick-and-morty
+    spec:
+      containers:
+        - name: rick-api
+          image: barhaim10/ricknmortyapi:latest
+          ports:
+            - containerPort: 8000
